@@ -538,6 +538,17 @@
                         </div>
 
                         <!-- Submit Button -->
+                        <!-- Follow requirement: must follow on Snapchat -->
+                        <div class="flex items-start gap-3">
+                            <div class="flex items-center">
+                                <input id="followSnapCheckbox" type="checkbox" class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded" />
+                            </div>
+                            <div class="flex-1 text-sm text-gray-600">
+                                <label for="followSnapCheckbox" class="block" data-translate="label-follow-snap">I confirm I follow <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">@housecareksa</a> on Snapchat.</label>
+                                <p id="followSnap-error" class="mt-1 text-sm text-red-500 hidden" data-translate="error-follow-snap">You must follow us on Snapchat to receive your reward.</p>
+                            </div>
+                        </div>
+
                         <button 
                             type="submit" 
                             id="submit-btn"
@@ -743,6 +754,8 @@
                 'success-message-1': 'Welcome to HouseCare. We are delighted to have you as one of the first customers of our new branch.',
                 'success-message-2': 'Our team will contact you shortly on WhatsApp.',
                 'whatsapp-badge': "We'll contact you on WhatsApp",
+                'label-follow-snap': 'I confirm I follow <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">@housecareksa</a> on Snapchat.',
+                'error-follow-snap': 'You must follow us on Snapchat to receive your reward.',
                 'follow-note': 'Please follow us on <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a>, <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a>, and <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a> <strong>@housecareksa</strong> — you must follow these accounts before you can receive your reward.',
                 'footer-socials': 'Follow us: <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a> · <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a> · <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a>',
                 
@@ -814,6 +827,8 @@
                 'success-message-1': 'مرحباً بك في هاوس كير. يسعدنا أن تكون من أوائل عملاء فرعنا الجديد.',
                 'success-message-2': 'سيتواصل معك فريقنا قريباً عبر الواتساب.',
                 'whatsapp-badge': 'سنتواصل معك عبر الواتساب',
+                'label-follow-snap': 'أؤكد أنني أتابع <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">@housecareksa</a> على سناب شات.',
+                'error-follow-snap': 'يجب متابعتنا على سناب شات لاستلام المكافأة.',
                 'follow-note': 'يرجى متابعتنا على <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">فيسبوك</a>، <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">إنستجرام</a>، و<a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">سناب شات</a> <strong>@housecareksa</strong> — يجب متابعتنا على هذه الحسابات قبل استلام المكافأة.',
                 'footer-socials': 'تابعنا: <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">فيسبوك</a> · <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">إنستجرام</a> · <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">سناب شات</a>',
                 
@@ -1086,8 +1101,31 @@
             const isFullNameValid = validateFullName();
             const isEmailValid = validateEmail(checkDuplicates);
             const isWhatsAppValid = validateWhatsApp(checkDuplicates);
+            const isFollowSnapValid = validateFollowSnap();
             
-            return isFullNameValid && isEmailValid && isWhatsAppValid;
+            return isFullNameValid && isEmailValid && isWhatsAppValid && isFollowSnapValid;
+        }
+
+        /**
+         * Validates that the Snapchat follow checkbox is checked
+         * @returns {boolean}
+         */
+        function validateFollowSnap() {
+            const checkbox = document.getElementById('followSnapCheckbox');
+            const errorEl = document.getElementById('followSnap-error');
+
+            if (!checkbox) return true; // If element missing, don't block
+
+            if (!checkbox.checked) {
+                errorEl.classList.remove('hidden');
+                checkbox.classList.add('ring-2', 'ring-red-300');
+                setTimeout(() => checkbox.classList.remove('ring-2', 'ring-red-300'), 300);
+                return false;
+            }
+
+            errorEl.classList.add('hidden');
+            checkbox.classList.remove('ring-2', 'ring-red-300');
+            return true;
         }
 
         // ============================================
@@ -1135,6 +1173,17 @@
             whatsappInput.classList.remove('border-red-300');
             whatsappInput.classList.add('border-gray-100');
         });
+        
+        // Clear follow error when checkbox changes
+        const followSnapCheckbox = document.getElementById('followSnapCheckbox');
+        if (followSnapCheckbox) {
+            followSnapCheckbox.addEventListener('change', () => {
+                const err = document.getElementById('followSnap-error');
+                if (followSnapCheckbox.checked) {
+                    err.classList.add('hidden');
+                }
+            });
+        }
         
         // Also clear WhatsApp errors when country code changes
         countryCodeSelect.addEventListener('change', () => {
