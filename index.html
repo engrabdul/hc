@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HouseCare Saudi Arabia - Welcome Reward</title>
+    <link rel="icon" type="image/svg+xml" href="hclogo.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts for a premium look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Arabic font for RTL */
+        html[dir="rtl"] * {
+            font-family: 'Noto Kufi Arabic', 'Poppins', sans-serif;
+        }
+
+        /* Language toggle button */
+        .lang-toggle {
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .lang-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom gradient background */
+        .hero-gradient {
+            background: linear-gradient(-45deg, #0d9488, #0891b2, #0284c7, #0f766e);
+            background-size: 400% 400%;
+            animation: gradient-flow 15s ease infinite;
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Smooth transitions */
+        .smooth-transition {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Form input focus animation */
+        .input-animate:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(13, 148, 136, 0.3);
+        }
+
+        /* Button hover effect */
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(13, 148, 136, 0.5);
+        }
+
+        .btn-hover:active {
+            transform: translateY(0);
+        }
+
+        /* Success animation */
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        .float-up {
+            animation: floatUp 0.6s ease-out forwards;
+        }
+
+        .float-up-delay {
+            animation: floatUp 0.6s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .float-up-delay-2 {
+            animation: floatUp 0.6s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Checkmark animation */
+        @keyframes checkmark {
+            0% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .checkmark-circle {
+            animation: scaleIn 0.4s ease-out forwards;
+        }
+
+        .checkmark-check {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: checkmark 0.5s ease-out 0.3s forwards;
+        }
+
+        /* Error shake animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        /* Loading spinner */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Pulse animation for the hero icon */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Main Container -->
+    <div class="min-h-screen flex flex-col">
+        
+        <!-- Header / Brand -->
+        <header class="py-4 px-6 bg-white/80 backdrop-blur-sm shadow-sm">
+            <div class="max-w-4xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <!-- HouseCare Logo Icon -->
+                    <div class="w-10 h-10 hero-gradient rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">HouseCare</span>
+                    <span class="text-sm text-gray-500 font-medium hidden sm:block" data-translate="brand-location">Saudi Arabia</span>
+                </div>
+                
+                <!-- Language Toggle Button -->
+                <button 
+                    id="lang-toggle" 
+                    class="lang-toggle flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 shadow-sm"
+                    aria-label="Switch language"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                    </svg>
+                    <span id="lang-label">العربية</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-gradient relative px-6 py-16 sm:py-24 overflow-hidden">
+            <!-- Decorative Pattern Overlay -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none" 
+                 style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 40px 40px;">
+            </div>
+            
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <!-- Decorative Icon -->
+                <div class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-white/20 backdrop-blur-sm rounded-full mb-6 pulse-glow smooth-transition">
+                    <span class="text-4xl sm:text-5xl">🎉</span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" data-translate="hero-title">
+                    Welcome to the New<br class="sm:hidden"> HouseCare Branch
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-teal-50 max-w-2xl mx-auto leading-relaxed" data-translate="hero-subtitle">
+                    We are rewarding our first set of valued customers. Kindly fill in your details to receive your welcome reward.
+                </p>
+
+                <!-- Scroll indicator -->
+                <div class="mt-8 animate-bounce">
+                    <svg class="w-6 h-6 mx-auto text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Section -->
+        <main class="flex-1 px-6 py-12 sm:py-16">
+            <div class="max-w-lg mx-auto">
+                
+                <!-- Form Card -->
+                <div id="form-card" class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 sm:p-10 smooth-transition">
+                    
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2" data-translate="form-title">Claim Your Reward</h2>
+                        <p class="text-gray-500" data-translate="form-subtitle">Fill in your details below</p>
+                    </div>
+
+                    <form id="reward-form" class="space-y-5" novalidate>
+                        
+                        <!-- Full Name -->
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2" data-translate="label-fullname">
+                                Full Name <span class="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="fullName" 
+                                name="fullName"
+                                data-placeholder="placeholder-fullname"
+                                placeholder="Enter your full name"
+                                required
+                                class="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-teal-500 focus:bg-white input-transition input-animate smooth-transition"
+                            >
+                            <p id="fullName-error" class="mt-2 text-sm text-red-500 hidden" data-translate="error-fullname">Please enter your full name</p>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2" data-translate="label-email">
+                                Email Address <span class="text-red-500">*</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email"
+                                data-placeholder="placeholder-email"
+                                placeholder="your.email@example.com"
+                                required
+                                class="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-teal-500 focus:bg-white input-animate smooth-transition"
+                            >
+                            <p id="email-error" class="mt-2 text-sm text-red-500 hidden" data-translate="error-email">Please enter a valid email address</p>
+                            <p id="email-duplicate-error" class="mt-2 text-sm text-red-500 hidden" data-translate="error-email-duplicate">This email has already been registered. Please use a different email.</p>
+                        </div>
+
+                        <!-- Nationality -->
+                        <div>
+                            <label for="nationality" class="block text-sm font-medium text-gray-700 mb-2" data-translate="label-nationality">
+                                Nationality
+                            </label>
+                            <div class="relative">
+                                <select 
+                                    id="nationality" 
+                                    name="nationality"
+                                    class="w-full px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-800 focus:outline-none focus:border-teal-500 focus:bg-white input-animate smooth-transition appearance-none cursor-pointer"
+                                >
+                                    <option value="" data-translate-option="nationality-select">Select your nationality</option>
+                                    <option value="Saudi Arabia" data-translate-option="nationality-sa">🇸🇦 Saudi Arabia</option>
+                                    <option value="Egypt" data-translate-option="nationality-eg">🇪🇬 Egypt</option>
+                                    <option value="India" data-translate-option="nationality-in">🇮🇳 India</option>
+                                    <option value="Pakistan" data-translate-option="nationality-pk">🇵🇰 Pakistan</option>
+                                    <option value="Philippines" data-translate-option="nationality-ph">🇵🇭 Philippines</option>
+                                    <option value="Indonesia" data-translate-option="nationality-id">🇮🇩 Indonesia</option>
+                                    <option value="Bangladesh" data-translate-option="nationality-bd">🇧🇩 Bangladesh</option>
+                                    <option value="Jordan" data-translate-option="nationality-jo">🇯🇴 Jordan</option>
+                                    <option value="Lebanon" data-translate-option="nationality-lb">🇱🇧 Lebanon</option>
+                                    <option value="Syria" data-translate-option="nationality-sy">🇸🇾 Syria</option>
+                                    <option value="Sudan" data-translate-option="nationality-sd">🇸🇩 Sudan</option>
+                                    <option value="Yemen" data-translate-option="nationality-ye">🇾🇪 Yemen</option>
+                                    <option value="Nigeria" data-translate-option="nationality-ng">🇳🇬 Nigeria</option>
+                                    <option value="United Kingdom" data-translate-option="nationality-uk">🇬🇧 United Kingdom</option>
+                                    <option value="United States" data-translate-option="nationality-us">🇺🇸 United States</option>
+                                    <option value="Other" data-translate-option="nationality-other">Other</option>
+                                </select>
+                                <!-- Custom dropdown arrow -->
+                                <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none rtl:right-auto rtl:left-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Number -->
+                        <div>
+                            <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-2" data-translate="label-whatsapp">
+                                WhatsApp Number <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 font-medium rtl:left-auto rtl:right-5">+966</span>
+                                <input 
+                                    type="tel" 
+                                    id="whatsapp" 
+                                    name="whatsapp"
+                                    placeholder="5X XXX XXXX"
+                                    required
+                                    pattern="[0-9]*"
+                                    maxlength="9"
+                                    class="w-full pl-16 pr-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-teal-500 focus:bg-white input-animate smooth-transition rtl:pl-5 rtl:pr-16"
+                                >
+                            </div>
+                            <p id="whatsapp-error" class="mt-2 text-sm text-red-500 hidden" data-translate="error-whatsapp">Please enter a valid WhatsApp number</p>
+                            <p class="mt-1 text-xs text-gray-400" data-translate="whatsapp-hint">Format: 5X XXX XXXX (e.g., 50 123 4567)</p>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button 
+                            type="submit" 
+                            id="submit-btn"
+                            class="w-full py-4 px-6 hero-gradient text-white font-semibold rounded-2xl shadow-lg shadow-teal-500/30 btn-hover smooth-transition flex items-center justify-center gap-2 mt-6"
+                        >
+                            <span id="btn-text" data-translate="btn-submit">Claim My Welcome Reward</span>
+                            <svg id="btn-icon" class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                            <!-- Loading Spinner (hidden by default) -->
+                            <svg id="btn-spinner" class="w-5 h-5 spinner hidden" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Privacy note -->
+                        <p class="text-center text-xs text-gray-400 mt-4" data-translate="privacy-note">
+                            🔒 Your information is secure and will only be used to contact you about your reward.
+                        </p>
+                        
+                        <!-- Error notification (hidden by default) -->
+                        <div id="error-notification" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <p id="error-message" class="text-sm text-red-700"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success Card (hidden by default) -->
+                <div id="success-card" class="hidden bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8 sm:p-10 text-center">
+                    
+                    <!-- Animated Checkmark -->
+                    <div class="flex justify-center mb-6">
+                        <div class="relative">
+                            <div class="checkmark-circle w-24 h-24 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center shadow-lg shadow-teal-500/30">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path class="checkmark-check" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <!-- Decorative rings -->
+                            <div class="absolute -inset-3 border-2 border-teal-200 rounded-full scale-in" style="animation-delay: 0.2s;"></div>
+                            <div class="absolute -inset-6 border border-teal-100 rounded-full scale-in" style="animation-delay: 0.4s;"></div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 scale-in" data-translate="success-title">🎉 Congratulations!</h2>
+                    
+                    <p class="text-gray-600 leading-relaxed float-up-delay" data-translate="success-message-1">
+                        Welcome to HouseCare. We are delighted to have you as one of the first customers of our new branch.
+                    </p>
+                    
+                    <p class="text-gray-600 leading-relaxed float-up-delay-2" data-translate="success-message-2">
+                        Our team will contact you shortly on WhatsApp.
+                    </p>
+
+                    <!-- WhatsApp info badge -->
+                    <div class="mt-8 inline-flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full float-up-delay-2">
+                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        <span class="text-sm text-green-700 font-medium" data-translate="whatsapp-badge">We'll contact you on WhatsApp</span>
+                    </div>
+
+                    <!-- Restart button (for demo purposes) -->
+                    <button 
+                        id="restart-btn"
+                        class="mt-8 text-sm text-teal-600 hover:text-teal-700 font-medium smooth-transition float-up-delay-2"
+                        data-translate="btn-restart"
+                    >
+                        ← Submit another response
+                    </button>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-6 px-6 bg-gray-100 border-t border-gray-200">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <div class="w-6 h-6 hero-gradient rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    </div>
+                    <span class="font-semibold text-gray-700">HouseCare</span>
+                </div>
+                <p class="text-sm text-gray-500" data-translate="footer-copyright">© 2024 HouseCare Saudi Arabia. All rights reserved.</p>
+                <p class="text-xs text-gray-400 mt-2" data-translate="footer-visit">Visit us at <a href="https://housecare.sa" target="_blank" class="text-teal-600 hover:underline">housecare.sa</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ============================================
+        // HouseCare Saudi Arabia - Landing Page Script
+        // ============================================
+
+        // ============================================
+        // Translation System
+        // ============================================
+
+        const translations = {
+            en: {
+                // Header
+                'brand-location': 'Saudi Arabia',
+                
+                // Hero
+                'hero-title': 'Welcome to the New<br class="sm:hidden"> HouseCare Branch',
+                'hero-subtitle': 'We are rewarding our first set of valued customers. Kindly fill in your details to receive your welcome reward.',
+                
+                // Form
+                'form-title': 'Claim Your Reward',
+                'form-subtitle': 'Fill in your details below',
+                'label-fullname': 'Full Name <span class="text-red-500">*</span>',
+                'label-email': 'Email Address <span class="text-red-500">*</span>',
+                'label-nationality': 'Nationality',
+                'label-whatsapp': 'WhatsApp Number <span class="text-red-500">*</span>',
+                
+                // Placeholders
+                'placeholder-fullname': 'Enter your full name',
+                'placeholder-email': 'your.email@example.com',
+                
+                // Nationality options
+                'nationality-select': 'Select your nationality',
+                'nationality-sa': '🇸🇦 Saudi Arabia',
+                'nationality-eg': '🇪🇬 Egypt',
+                'nationality-in': '🇮🇳 India',
+                'nationality-pk': '🇵🇰 Pakistan',
+                'nationality-ph': '🇵🇭 Philippines',
+                'nationality-id': '🇮🇩 Indonesia',
+                'nationality-bd': '🇧🇩 Bangladesh',
+                'nationality-jo': '🇯🇴 Jordan',
+                'nationality-lb': '🇱🇧 Lebanon',
+                'nationality-sy': '🇸🇾 Syria',
+                'nationality-sd': '🇸🇩 Sudan',
+                'nationality-ye': '🇾🇪 Yemen',
+                'nationality-ng': '🇳🇬 Nigeria',
+                'nationality-uk': '🇬🇧 United Kingdom',
+                'nationality-us': '🇺🇸 United States',
+                'nationality-other': 'Other',
+                
+                // Errors
+                'error-fullname': 'Please enter your full name',
+                'error-email': 'Please enter a valid email address',
+                'error-email-duplicate': 'This email has already been registered. Please use a different email.',
+                'error-whatsapp': 'Please enter a valid WhatsApp number',
+                'error-submit': 'Failed to submit. Please try again.',
+                
+                // Hints
+                'whatsapp-hint': 'Format: 5X XXX XXXX (e.g., 50 123 4567)',
+                
+                // Buttons
+                'btn-submit': 'Claim My Welcome Reward',
+                'btn-processing': 'Processing...',
+                'btn-restart': '← Submit another response',
+                
+                // Privacy
+                'privacy-note': '🔒 Your information is secure and will only be used to contact you about your reward.',
+                
+                // Success
+                'success-title': '🎉 Congratulations!',
+                'success-message-1': 'Welcome to HouseCare. We are delighted to have you as one of the first customers of our new branch.',
+                'success-message-2': 'Our team will contact you shortly on WhatsApp.',
+                'whatsapp-badge': "We'll contact you on WhatsApp",
+                
+                // Footer
+                'footer-copyright': '© 2024 HouseCare Saudi Arabia. All rights reserved.',
+                'footer-visit': 'Visit us at <a href="https://housecare.sa" target="_blank" class="text-teal-600 hover:underline">housecare.sa</a>'
+            },
+            ar: {
+                // Header
+                'brand-location': 'المملكة العربية السعودية',
+                
+                // Hero
+                'hero-title': 'مرحباً بكم في فرع<br class="sm:hidden"> هاوس كير الجديد',
+                'hero-subtitle': 'نحن نكافئ عملاءنا الأوائل المميزين. يرجى ملء بياناتك للحصول على مكافأة الترحيب.',
+                
+                // Form
+                'form-title': 'احصل على مكافأتك',
+                'form-subtitle': 'املأ بياناتك أدناه',
+                'label-fullname': 'الاسم الكامل <span class="text-red-500">*</span>',
+                'label-email': 'البريد الإلكتروني <span class="text-red-500">*</span>',
+                'label-nationality': 'الجنسية',
+                'label-whatsapp': 'رقم الواتساب <span class="text-red-500">*</span>',
+                
+                // Placeholders
+                'placeholder-fullname': 'أدخل اسمك الكامل',
+                'placeholder-email': 'example@email.com',
+                
+                // Nationality options
+                'nationality-select': 'اختر جنسيتك',
+                'nationality-sa': '🇸🇦 المملكة العربية السعودية',
+                'nationality-eg': '🇪🇬 مصر',
+                'nationality-in': '🇮🇳 الهند',
+                'nationality-pk': '🇵🇰 باكستان',
+                'nationality-ph': '🇵🇭 الفلبين',
+                'nationality-id': '🇮🇩 إندونيسيا',
+                'nationality-bd': '🇧🇩 بنغلاديش',
+                'nationality-jo': '🇯🇴 الأردن',
+                'nationality-lb': '🇱🇧 لبنان',
+                'nationality-sy': '🇸🇾 سوريا',
+                'nationality-sd': '🇸🇩 السودان',
+                'nationality-ye': '🇾🇪 اليمن',
+                'nationality-ng': '🇳🇬 نيجيريا',
+                'nationality-uk': '🇬🇧 المملكة المتحدة',
+                'nationality-us': '🇺🇸 الولايات المتحدة',
+                'nationality-other': 'أخرى',
+                
+                // Errors
+                'error-fullname': 'يرجى إدخال اسمك الكامل',
+                'error-email': 'يرجى إدخال بريد إلكتروني صحيح',
+                'error-email-duplicate': 'هذا البريد الإلكتروني مسجل بالفعل. يرجى استخدام بريد إلكتروني آخر.',
+                'error-whatsapp': 'يرجى إدخال رقم واتساب صحيح',
+                'error-submit': 'فشل الإرسال. يرجى المحاولة مرة أخرى.',
+                
+                // Hints
+                'whatsapp-hint': 'الصيغة: 5X XXX XXXX (مثال: 50 123 4567)',
+                
+                // Buttons
+                'btn-submit': 'احصل على مكافأة الترحيب',
+                'btn-processing': 'جاري المعالجة...',
+                'btn-restart': 'إرسال استجابة أخرى ←',
+                
+                // Privacy
+                'privacy-note': '🔒 معلوماتك آمنة وستُستخدم فقط للتواصل معك بشأن مكافأتك.',
+                
+                // Success
+                'success-title': '🎉 مبروك!',
+                'success-message-1': 'مرحباً بك في هاوس كير. يسعدنا أن تكون من أوائل عملاء فرعنا الجديد.',
+                'success-message-2': 'سيتواصل معك فريقنا قريباً عبر الواتساب.',
+                'whatsapp-badge': 'سنتواصل معك عبر الواتساب',
+                
+                // Footer
+                'footer-copyright': '© 2024 هاوس كير المملكة العربية السعودية. جميع الحقوق محفوظة.',
+                'footer-visit': 'زورونا على <a href="https://housecare.sa" target="_blank" class="text-teal-600 hover:underline">housecare.sa</a>'
+            }
+        };
+
+        // Current language state
+        let currentLang = localStorage.getItem('housecare_lang') || 'en';
+
+        /**
+         * Applies translations to all elements with data-translate attribute
+         */
+        function applyTranslations(lang) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            const placeholderElements = document.querySelectorAll('[data-placeholder]');
+            placeholderElements.forEach(el => {
+                const key = el.getAttribute('data-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            // Update select options
+            const optionElements = document.querySelectorAll('[data-translate-option]');
+            optionElements.forEach(el => {
+                const key = el.getAttribute('data-translate-option');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update page direction and lang attribute
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+            }
+
+            // Update language toggle button label
+            const langLabel = document.getElementById('lang-label');
+            langLabel.textContent = lang === 'en' ? 'العربية' : 'English';
+
+            // Update page title
+            document.title = lang === 'ar' ? 'هاوس كير السعودية - مكافأة الترحيب' : 'HouseCare Saudi Arabia - Welcome Reward';
+
+            // Store preference
+            localStorage.setItem('housecare_lang', lang);
+            currentLang = lang;
+        }
+
+        /**
+         * Toggles between English and Arabic
+         */
+        function toggleLanguage() {
+            const newLang = currentLang === 'en' ? 'ar' : 'en';
+            applyTranslations(newLang);
+        }
+
+        // ============================================
+        // DOM Elements
+        const form = document.getElementById('reward-form');
+        const formCard = document.getElementById('form-card');
+        const successCard = document.getElementById('success-card');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const restartBtn = document.getElementById('restart-btn');
+        const confettiCanvas = document.getElementById('confetti-canvas');
+
+        // Form field elements
+        const fullNameInput = document.getElementById('fullName');
+        const emailInput = document.getElementById('email');
+        const whatsappInput = document.getElementById('whatsapp');
+
+        // Error elements
+        const fullNameError = document.getElementById('fullName-error');
+        const emailError = document.getElementById('email-error');
+        const emailDuplicateError = document.getElementById('email-duplicate-error');
+        const whatsappError = document.getElementById('whatsapp-error');
+        
+        // ============================================
+        // Duplicate Email Checking
+        // ============================================
+        
+        /**
+         * Gets the list of submitted emails from localStorage
+         * @returns {Array} - Array of submitted email addresses
+         */
+        function getSubmittedEmails() {
+            return JSON.parse(localStorage.getItem('housecare_submitted_emails') || '[]');
+        }
+        
+        /**
+         * Adds an email to the submitted emails list
+         * @param {string} email - The email to add
+         */
+        function addSubmittedEmail(email) {
+            const emails = getSubmittedEmails();
+            emails.push(email.toLowerCase().trim());
+            localStorage.setItem('housecare_submitted_emails', JSON.stringify(emails));
+        }
+        
+        /**
+         * Checks if an email has already been submitted
+         * @param {string} email - The email to check
+         * @returns {boolean} - True if duplicate, false otherwise
+         */
+        function isEmailDuplicate(email) {
+            const emails = getSubmittedEmails();
+            return emails.includes(email.toLowerCase().trim());
+        }
+
+        // ============================================
+        // Form Validation Functions
+        // ============================================
+
+        /**
+         * Validates the full name field
+         * @returns {boolean} - True if valid, false otherwise
+         */
+        function validateFullName() {
+            const value = fullNameInput.value.trim();
+            const isValid = value.length >= 2;
+            
+            if (!isValid) {
+                fullNameError.classList.remove('hidden');
+                fullNameInput.classList.add('border-red-300', 'shake');
+                fullNameInput.classList.remove('border-gray-100');
+                setTimeout(() => fullNameInput.classList.remove('shake'), 300);
+            } else {
+                fullNameError.classList.add('hidden');
+                fullNameInput.classList.remove('border-red-300');
+                fullNameInput.classList.add('border-gray-100');
+            }
+            
+            return isValid;
+        }
+
+        /**
+         * Validates the email field using regex
+         * @param {boolean} checkDuplicate - Whether to check for duplicate emails
+         * @returns {boolean} - True if valid, false otherwise
+         */
+        function validateEmail(checkDuplicate = false) {
+            const value = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isValidFormat = emailRegex.test(value);
+            
+            // Hide both error messages first
+            emailError.classList.add('hidden');
+            emailDuplicateError.classList.add('hidden');
+            
+            if (!isValidFormat) {
+                emailError.classList.remove('hidden');
+                emailInput.classList.add('border-red-300', 'shake');
+                emailInput.classList.remove('border-gray-100');
+                setTimeout(() => emailInput.classList.remove('shake'), 300);
+                return false;
+            }
+            
+            // Check for duplicate email if requested
+            if (checkDuplicate && isEmailDuplicate(value)) {
+                emailDuplicateError.classList.remove('hidden');
+                emailInput.classList.add('border-red-300', 'shake');
+                emailInput.classList.remove('border-gray-100');
+                setTimeout(() => emailInput.classList.remove('shake'), 300);
+                return false;
+            }
+            
+            emailInput.classList.remove('border-red-300');
+            emailInput.classList.add('border-gray-100');
+            return true;
+        }
+
+        /**
+         * Validates the WhatsApp number (Saudi format)
+         * @returns {boolean} - True if valid, false otherwise
+         */
+        function validateWhatsApp() {
+            const value = whatsappInput.value.trim();
+            // Saudi mobile numbers start with 5 and are 9 digits
+            const saudiPhoneRegex = /^5[0-9]{8}$/;
+            const isValid = saudiPhoneRegex.test(value);
+            
+            if (!isValid) {
+                whatsappError.classList.remove('hidden');
+                whatsappInput.classList.add('border-red-300', 'shake');
+                whatsappInput.classList.remove('border-gray-100');
+                setTimeout(() => whatsappInput.classList.remove('shake'), 300);
+            } else {
+                whatsappError.classList.add('hidden');
+                whatsappInput.classList.remove('border-red-300');
+                whatsappInput.classList.add('border-gray-100');
+            }
+            
+            return isValid;
+        }
+
+        /**
+         * Validates all form fields
+         * @param {boolean} checkDuplicate - Whether to check for duplicate emails
+         * @returns {boolean} - True if all valid, false otherwise
+         */
+        function validateForm(checkDuplicate = false) {
+            const isFullNameValid = validateFullName();
+            const isEmailValid = validateEmail(checkDuplicate);
+            const isWhatsAppValid = validateWhatsApp();
+            
+            return isFullNameValid && isEmailValid && isWhatsAppValid;
+        }
+
+        // ============================================
+        // Input Formatting
+        // ============================================
+
+        /**
+         * Formats WhatsApp number input (adds spaces for readability)
+         */
+        whatsappInput.addEventListener('input', function(e) {
+            // Remove any non-digit characters
+            let value = e.target.value.replace(/\D/g, '');
+            
+            // Limit to 9 digits
+            if (value.length > 9) {
+                value = value.slice(0, 9);
+            }
+            
+            // Update the input value
+            e.target.value = value;
+        });
+
+        // Real-time validation on blur
+        fullNameInput.addEventListener('blur', validateFullName);
+        emailInput.addEventListener('blur', validateEmail);
+        whatsappInput.addEventListener('blur', validateWhatsApp);
+
+        // Clear errors on input
+        fullNameInput.addEventListener('input', () => {
+            fullNameError.classList.add('hidden');
+            fullNameInput.classList.remove('border-red-300');
+            fullNameInput.classList.add('border-gray-100');
+        });
+
+        emailInput.addEventListener('input', () => {
+            emailError.classList.add('hidden');
+            emailDuplicateError.classList.add('hidden');
+            emailInput.classList.remove('border-red-300');
+            emailInput.classList.add('border-gray-100');
+        });
+
+        whatsappInput.addEventListener('input', () => {
+            whatsappError.classList.add('hidden');
+            whatsappInput.classList.remove('border-red-300');
+            whatsappInput.classList.add('border-gray-100');
+        });
+
+        // ============================================
+        // Google Sheets Configuration
+        // ============================================
+        
+        // Google Apps Script Web App URL for form submissions
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbw2RQ_3WFy0mLn_8VreJJ9VBluwJVf_AVDb0RNwlk_0a60OsENvS_3AhS0DMxaa793fWg/exec';
+        
+        // ============================================
+        // Form Submission Handler
+        // ============================================
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Validate all fields (including duplicate email check)
+            if (!validateForm(true)) {
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = translations[currentLang]['btn-processing'];
+            btnIcon.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+            submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+            
+            // Prepare form data - remove any spaces/non-digits from WhatsApp number
+            const whatsappNumber = whatsappInput.value.replace(/\D/g, '').replace(/\s/g, '');
+            const formData = {
+                fullName: fullNameInput.value.trim(),
+                email: emailInput.value.trim(),
+                nationality: document.getElementById('nationality').value,
+                whatsapp: '+966' + whatsappNumber,
+                language: currentLang,
+                submittedAt: new Date().toISOString()
+            };
+            
+            // Store in localStorage as backup
+            const submissions = JSON.parse(localStorage.getItem('housecare_submissions') || '[]');
+            submissions.push(formData);
+            localStorage.setItem('housecare_submissions', JSON.stringify(submissions));
+            
+            // Log to console
+            console.log('📝 New submission:', formData);
+            
+            // Submit to Google Sheets
+            try {
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Required for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                console.log('✅ Data sent to Google Sheets successfully!');
+                
+                // Save email to prevent duplicates
+                addSubmittedEmail(formData.email);
+                
+                showSuccess();
+                
+            } catch (error) {
+                console.error('❌ Error submitting to Google Sheets:', error);
+                
+                // Still show success since data is saved locally
+                // You can modify this to show an error message if preferred
+                showSuccess();
+                
+                // Optional: Show error notification
+                // showError(translations[currentLang]['error-submit'] || 'Submission failed. Please try again.');
+            }
+        });
+
+        /**
+         * Displays the success screen with animation
+         */
+        function showSuccess() {
+            // Hide error notification if visible
+            document.getElementById('error-notification').classList.add('hidden');
+            
+            // Hide form card with fade out
+            formCard.style.opacity = '0';
+            formCard.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                formCard.classList.add('hidden');
+                successCard.classList.remove('hidden');
+                
+                // Trigger confetti
+                launchConfetti();
+                
+            }, 300);
+        }
+        
+        /**
+         * Displays an error notification
+         * @param {string} message - The error message to display
+         */
+        function showError(message) {
+            const errorNotification = document.getElementById('error-notification');
+            const errorMessage = document.getElementById('error-message');
+            
+            errorMessage.textContent = message;
+            errorNotification.classList.remove('hidden');
+            
+            // Reset button state
+            resetSubmitButton();
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                errorNotification.classList.add('hidden');
+            }, 5000);
+        }
+        
+        /**
+         * Resets the submit button to its default state
+         */
+        function resetSubmitButton() {
+            submitBtn.disabled = false;
+            btnText.textContent = translations[currentLang]['btn-submit'];
+            btnIcon.classList.remove('hidden');
+            btnSpinner.classList.add('hidden');
+            submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+        }
+
+        // ============================================
+        // Restart Button Handler (Demo)
+        // ============================================
+
+        restartBtn.addEventListener('click', function() {
+            // Reset form
+            form.reset();
+            
+            // Hide success card
+            successCard.classList.add('hidden');
+            
+            // Show form card
+            formCard.classList.remove('hidden');
+            
+            // Reset button state
+            setTimeout(() => {
+                formCard.style.opacity = '1';
+                formCard.style.transform = 'scale(1)';
+                
+                // Reset submit button with proper translation
+                resetSubmitButton();
+                
+                // Clear confetti canvas
+                const ctx = confettiCanvas.getContext('2d');
+                ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                
+                // Stop confetti animation
+                confetti = [];
+            }, 50);
+        });
+
+        // ============================================
+        // Confetti Animation
+        // ============================================
+
+        let confetti = [];
+        const confettiColors = [
+            '#0d9488', // teal-600
+            '#0891b2', // cyan-600
+            '#0284c7', // sky-600
+            '#fbbf24', // amber-400
+            '#f472b6', // pink-400
+            '#a78bfa', // violet-400
+            '#34d399', // emerald-400
+        ];
+
+        function launchConfetti() {
+            confetti = [];
+            const numConfetti = 150;
+            
+            for (let i = 0; i < numConfetti; i++) {
+                confetti.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+                    size: Math.random() * 10 + 5,
+                    color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+                    speedX: Math.random() * 4 - 2,
+                    speedY: Math.random() * 3 + 2,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 10 - 5,
+                    opacity: Math.random() * 0.5 + 0.5
+                });
+            }
+            
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            const ctx = confettiCanvas.getContext('2d');
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            
+            confetti.forEach((particle, index) => {
+                // Update position
+                particle.y += particle.speedY;
+                particle.x += particle.speedX;
+                particle.rotation += particle.rotationSpeed;
+                
+                // Add wave motion
+                particle.x += Math.sin(particle.y * 0.02) * 0.5;
+                
+                // Reset particle if it goes off screen
+                if (particle.y > confettiCanvas.height) {
+                    particle.y = -particle.size;
+                    particle.x = Math.random() * confettiCanvas.width;
+                }
+                
+                // Draw particle
+                ctx.save();
+                ctx.translate(particle.x, particle.y);
+                ctx.rotate((particle.rotation * Math.PI) / 180);
+                ctx.globalAlpha = particle.opacity;
+                ctx.fillStyle = particle.color;
+                
+                // Draw confetti shape (rectangle)
+                ctx.fillRect(-particle.size / 2, -particle.size / 4, particle.size, particle.size / 2);
+                
+                ctx.restore();
+            });
+            
+            // Continue animation
+            if (confetti.length > 0) {
+                requestAnimationFrame(animateConfetti);
+            }
+        }
+
+        // Set canvas size
+        function resizeCanvas() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+
+        // Initialize canvas size
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // ============================================
+        // Smooth scroll for better UX
+        // ============================================
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // Accessibility: Handle keyboard navigation
+        // ============================================
+
+        // Add keyboard support for better accessibility
+        document.addEventListener('keydown', function(e) {
+            // Handle Enter key on form submission
+            if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                const form = e.target.closest('form');
+                if (form && !e.target.matches('button, input[type="submit"]')) {
+                    e.preventDefault();
+                    // Find the next input or submit button
+                    const inputs = Array.from(form.querySelectorAll('input, select, button'));
+                    const currentIndex = inputs.indexOf(e.target);
+                    const nextInput = inputs[currentIndex + 1];
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+            }
+        });
+
+        // ============================================
+        // Initialize page
+        // ============================================
+
+        // ============================================
+        // Language Toggle Event Listener
+        // ============================================
+
+        const langToggle = document.getElementById('lang-toggle');
+        langToggle.addEventListener('click', toggleLanguage);
+
+        // Apply saved language on page load
+        applyTranslations(currentLang);
+
+        console.log('🏠 HouseCare Saudi Arabia - Landing Page Loaded');
+        console.log('Ready to welcome new customers!');
+        console.log('Current language:', currentLang);
+    </script>
+</body>
+</html>
