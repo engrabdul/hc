@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join HouseCare Saudi Arabia and claim your welcome reward. Register now to get exclusive benefits as one of our first customers.">
     <title>HouseCare Saudi Arabia - Welcome Reward</title>
+    <title>هاوس كير السعودية - مكافأة الترحيب</title>
     <link rel="icon" type="image/svg+xml" href="hclogo.jpg">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Google Fonts for a premium look -->
@@ -184,6 +186,32 @@
         .pulse-glow {
             animation: pulse-glow 2s ease-in-out infinite;
         }
+
+        /* Phone input group styles */
+        .phone-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .country-code-select {
+            flex-shrink: 0;
+            width: 130px;
+        }
+
+        .phone-number-input {
+            flex: 1;
+        }
+
+        @media (max-width: 400px) {
+            .phone-input-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .country-code-select {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gray-50">
@@ -214,7 +242,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
                     </svg>
-                    <span id="lang-label">العربية</span>
+                    <span id="lang-label">English</span>
                 </button>
             </div>
         </header>
@@ -334,26 +362,181 @@
                             </div>
                         </div>
 
-                        <!-- WhatsApp Number -->
+                        <!-- WhatsApp Number with Country Code -->
                         <div>
                             <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-2" data-translate="label-whatsapp">
                                 WhatsApp Number <span class="text-red-500">*</span>
                             </label>
-                            <div class="relative">
-                                <span class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 font-medium rtl:left-auto rtl:right-5">+966</span>
+                            <div class="phone-input-group">
+                                <!-- Country Code Dropdown -->
+                                <div class="relative country-code-select">
+                                    <select 
+                                        id="countryCode" 
+                                        name="countryCode"
+                                        class="w-full px-3 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-800 focus:outline-none focus:border-teal-500 focus:bg-white input-animate smooth-transition appearance-none cursor-pointer text-sm"
+                                    >
+                                        <!-- Gulf Countries -->
+                                        <option value="+966">🇸🇦 +966</option>
+                                        <option value="+971">🇦🇪 +971</option>
+                                        <option value="+973">🇧🇭 +973</option>
+                                        <option value="+965">🇰🇼 +965</option>
+                                        <option value="+968">🇴🇲 +968</option>
+                                        <option value="+974">🇶🇦 +974</option>
+                                        <!-- Arab Countries -->
+                                        <option value="+20">🇪🇬 +20</option>
+                                        <option value="+962">🇯🇴 +962</option>
+                                        <option value="+961">🇱🇧 +961</option>
+                                        <option value="+963">🇸🇾 +963</option>
+                                        <option value="+964">🇮🇶 +964</option>
+                                        <option value="+967">🇾🇪 +967</option>
+                                        <option value="+249">🇸🇩 +249</option>
+                                        <option value="+212">🇲🇦 +212</option>
+                                        <option value="+216">🇹🇳 +216</option>
+                                        <option value="+213">🇩🇿 +213</option>
+                                        <option value="+218">🇱🇾 +218</option>
+                                        <option value="+970">🇵🇸 +970</option>
+                                        <option value="+222">🇲🇷 +222</option>
+                                        <option value="+253">🇩🇯 +253</option>
+                                        <option value="+252">🇸🇴 +252</option>
+                                        <option value="+269">🇰🇲 +269</option>
+                                        <!-- South Asia -->
+                                        <option value="+91">🇮🇳 +91</option>
+                                        <option value="+92">🇵🇰 +92</option>
+                                        <option value="+880">🇧🇩 +880</option>
+                                        <option value="+94">🇱🇰 +94</option>
+                                        <option value="+977">🇳🇵 +977</option>
+                                        <option value="+93">🇦🇫 +93</option>
+                                        <option value="+960">🇲🇻 +960</option>
+                                        <option value="+975">🇧🇹 +975</option>
+                                        <!-- Southeast Asia -->
+                                        <option value="+63">🇵🇭 +63</option>
+                                        <option value="+62">🇮🇩 +62</option>
+                                        <option value="+60">🇲🇾 +60</option>
+                                        <option value="+65">🇸🇬 +65</option>
+                                        <option value="+66">🇹🇭 +66</option>
+                                        <option value="+84">🇻🇳 +84</option>
+                                        <option value="+95">🇲🇲 +95</option>
+                                        <option value="+855">🇰🇭 +855</option>
+                                        <option value="+856">🇱🇦 +856</option>
+                                        <option value="+673">🇧🇳 +673</option>
+                                        <option value="+670">🇹🇱 +670</option>
+                                        <!-- East Asia -->
+                                        <option value="+86">🇨🇳 +86</option>
+                                        <option value="+81">🇯🇵 +81</option>
+                                        <option value="+82">🇰🇷 +82</option>
+                                        <option value="+852">🇭🇰 +852</option>
+                                        <option value="+853">🇲🇴 +853</option>
+                                        <option value="+886">🇹🇼 +886</option>
+                                        <option value="+976">🇲🇳 +976</option>
+                                        <!-- Central Asia -->
+                                        <option value="+7">🇰🇿 +7</option>
+                                        <option value="+998">🇺🇿 +998</option>
+                                        <option value="+992">🇹🇯 +992</option>
+                                        <option value="+996">🇰🇬 +996</option>
+                                        <option value="+993">🇹🇲 +993</option>
+                                        <option value="+994">🇦🇿 +994</option>
+                                        <!-- Africa -->
+                                        <option value="+234">🇳🇬 +234</option>
+                                        <option value="+254">🇰🇪 +254</option>
+                                        <option value="+27">🇿🇦 +27</option>
+                                        <option value="+233">🇬🇭 +233</option>
+                                        <option value="+251">🇪🇹 +251</option>
+                                        <option value="+255">🇹🇿 +255</option>
+                                        <option value="+256">🇺🇬 +256</option>
+                                        <option value="+237">🇨🇲 +237</option>
+                                        <option value="+225">🇨🇮 +225</option>
+                                        <option value="+221">🇸🇳 +221</option>
+                                        <option value="+243">🇨🇩 +243</option>
+                                        <option value="+244">🇦🇴 +244</option>
+                                        <option value="+258">🇲🇿 +258</option>
+                                        <option value="+263">🇿🇼 +263</option>
+                                        <option value="+260">🇿🇲 +260</option>
+                                        <option value="+250">🇷🇼 +250</option>
+                                        <option value="+261">🇲🇬 +261</option>
+                                        <option value="+230">🇲🇺 +230</option>
+                                        <!-- Europe -->
+                                        <option value="+44">🇬🇧 +44</option>
+                                        <option value="+33">🇫🇷 +33</option>
+                                        <option value="+49">🇩🇪 +49</option>
+                                        <option value="+39">🇮🇹 +39</option>
+                                        <option value="+34">🇪🇸 +34</option>
+                                        <option value="+31">🇳🇱 +31</option>
+                                        <option value="+32">🇧🇪 +32</option>
+                                        <option value="+41">🇨🇭 +41</option>
+                                        <option value="+43">🇦🇹 +43</option>
+                                        <option value="+46">🇸🇪 +46</option>
+                                        <option value="+47">🇳🇴 +47</option>
+                                        <option value="+45">🇩🇰 +45</option>
+                                        <option value="+358">🇫🇮 +358</option>
+                                        <option value="+48">🇵🇱 +48</option>
+                                        <option value="+351">🇵🇹 +351</option>
+                                        <option value="+30">🇬🇷 +30</option>
+                                        <option value="+353">🇮🇪 +353</option>
+                                        <option value="+420">🇨🇿 +420</option>
+                                        <option value="+36">🇭🇺 +36</option>
+                                        <option value="+40">🇷🇴 +40</option>
+                                        <option value="+359">🇧🇬 +359</option>
+                                        <option value="+380">🇺🇦 +380</option>
+                                        <option value="+375">🇧🇾 +375</option>
+                                        <option value="+7">🇷🇺 +7</option>
+                                        <!-- Turkey & Middle East -->
+                                        <option value="+90">🇹🇷 +90</option>
+                                        <option value="+98">🇮🇷 +98</option>
+                                        <option value="+972">🇮🇱 +972</option>
+                                        <option value="+374">🇦🇲 +374</option>
+                                        <option value="+995">🇬🇪 +995</option>
+                                        <option value="+357">🇨🇾 +357</option>
+                                        <!-- Americas -->
+                                        <option value="+1">🇺🇸 +1</option>
+                                        <option value="+1">🇨🇦 +1</option>
+                                        <option value="+52">🇲🇽 +52</option>
+                                        <option value="+55">🇧🇷 +55</option>
+                                        <option value="+54">🇦🇷 +54</option>
+                                        <option value="+56">🇨🇱 +56</option>
+                                        <option value="+57">🇨🇴 +57</option>
+                                        <option value="+51">🇵🇪 +51</option>
+                                        <option value="+58">🇻🇪 +58</option>
+                                        <option value="+593">🇪🇨 +593</option>
+                                        <option value="+591">🇧🇴 +591</option>
+                                        <option value="+595">🇵🇾 +595</option>
+                                        <option value="+598">🇺🇾 +598</option>
+                                        <option value="+507">🇵🇦 +507</option>
+                                        <option value="+506">🇨🇷 +506</option>
+                                        <option value="+503">🇸🇻 +503</option>
+                                        <option value="+502">🇬🇹 +502</option>
+                                        <option value="+504">🇭🇳 +504</option>
+                                        <option value="+505">🇳🇮 +505</option>
+                                        <option value="+1809">🇩🇴 +1809</option>
+                                        <option value="+1876">🇯🇲 +1876</option>
+                                        <option value="+1868">🇹🇹 +1868</option>
+                                        <!-- Oceania -->
+                                        <option value="+61">🇦🇺 +61</option>
+                                        <option value="+64">🇳🇿 +64</option>
+                                        <option value="+679">🇫🇯 +679</option>
+                                        <option value="+675">🇵🇬 +675</option>
+                                    </select>
+                                    <!-- Custom dropdown arrow -->
+                                    <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none rtl:right-auto rtl:left-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                
+                                <!-- Phone Number Input -->
                                 <input 
                                     type="tel" 
                                     id="whatsapp" 
                                     name="whatsapp"
-                                    placeholder="5X XXX XXXX"
+                                    data-placeholder="placeholder-whatsapp"
+                                    placeholder="5XXXXXXXX"
                                     required
                                     pattern="[0-9]*"
-                                    maxlength="9"
-                                    class="w-full pl-16 pr-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-teal-500 focus:bg-white input-animate smooth-transition rtl:pl-5 rtl:pr-16"
+                                    maxlength="15"
+                                    class="phone-number-input px-5 py-4 bg-gray-50 border-2 border-gray-100 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-teal-500 focus:bg-white input-animate smooth-transition"
                                 >
                             </div>
                             <p id="whatsapp-error" class="mt-2 text-sm text-red-500 hidden" data-translate="error-whatsapp">Please enter a valid WhatsApp number</p>
-                            <p class="mt-1 text-xs text-gray-400" data-translate="whatsapp-hint">Format: 5X XXX XXXX (e.g., 50 123 4567)</p>
+                            <p id="whatsapp-duplicate-error" class="mt-2 text-sm text-red-500 hidden" data-translate="error-whatsapp-duplicate">This WhatsApp number has already been registered. Please use a different number.</p>
+                            <p class="mt-1 text-xs text-gray-400" data-translate="whatsapp-hint">Enter your phone number without the country code</p>
                         </div>
 
                         <!-- Submit Button -->
@@ -425,6 +608,11 @@
                         <span class="text-sm text-green-700 font-medium" data-translate="whatsapp-badge">We'll contact you on WhatsApp</span>
                     </div>
 
+                    <!-- Follow Requirement Notice -->
+                    <div class="mt-4 text-sm text-gray-700" data-translate="follow-note">
+                        Please follow us on <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a>, <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a>, and <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a> <span class="font-medium">@housecareksa</span> — you must follow these accounts before you can receive your reward.
+                    </div>
+
                     <!-- Restart button (for demo purposes) -->
                     <button 
                         id="restart-btn"
@@ -449,6 +637,7 @@
                 </div>
                 <p class="text-sm text-gray-500" data-translate="footer-copyright">© 2024 HouseCare Saudi Arabia. All rights reserved.</p>
                 <p class="text-xs text-gray-400 mt-2" data-translate="footer-visit">Visit us at <a href="https://housecare.sa" target="_blank" class="text-teal-600 hover:underline">housecare.sa</a></p>
+                <p class="text-xs text-gray-400 mt-2" data-translate="footer-socials">Follow us: <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a> · <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a> · <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a></p>
             </div>
         </footer>
     </div>
@@ -482,6 +671,7 @@
                 // Placeholders
                 'placeholder-fullname': 'Enter your full name',
                 'placeholder-email': 'your.email@example.com',
+                'placeholder-whatsapp': '5XXXXXXXX',
                 
                 // Nationality options
                 'nationality-select': 'Select your nationality',
@@ -506,11 +696,12 @@
                 'error-fullname': 'Please enter your full name',
                 'error-email': 'Please enter a valid email address',
                 'error-email-duplicate': 'This email has already been registered. Please use a different email.',
-                'error-whatsapp': 'Please enter a valid WhatsApp number',
+                'error-whatsapp': 'Please enter a valid WhatsApp number (minimum 7 digits)',
+                'error-whatsapp-duplicate': 'This WhatsApp number has already been registered. Please use a different number.',
                 'error-submit': 'Failed to submit. Please try again.',
                 
                 // Hints
-                'whatsapp-hint': 'Format: 5X XXX XXXX (e.g., 50 123 4567)',
+                'whatsapp-hint': 'Enter your phone number without the country code',
                 
                 // Buttons
                 'btn-submit': 'Claim My Welcome Reward',
@@ -525,6 +716,8 @@
                 'success-message-1': 'Welcome to HouseCare. We are delighted to have you as one of the first customers of our new branch.',
                 'success-message-2': 'Our team will contact you shortly on WhatsApp.',
                 'whatsapp-badge': "We'll contact you on WhatsApp",
+                'follow-note': 'Please follow us on <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a>, <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a>, and <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a> <strong>@housecareksa</strong> — you must follow these accounts before you can receive your reward.',
+                'footer-socials': 'Follow us: <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a> · <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a> · <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a>',
                 
                 // Footer
                 'footer-copyright': '© 2024 HouseCare Saudi Arabia. All rights reserved.',
@@ -549,6 +742,7 @@
                 // Placeholders
                 'placeholder-fullname': 'أدخل اسمك الكامل',
                 'placeholder-email': 'example@email.com',
+                'placeholder-whatsapp': '5XXXXXXXX',
                 
                 // Nationality options
                 'nationality-select': 'اختر جنسيتك',
@@ -573,11 +767,12 @@
                 'error-fullname': 'يرجى إدخال اسمك الكامل',
                 'error-email': 'يرجى إدخال بريد إلكتروني صحيح',
                 'error-email-duplicate': 'هذا البريد الإلكتروني مسجل بالفعل. يرجى استخدام بريد إلكتروني آخر.',
-                'error-whatsapp': 'يرجى إدخال رقم واتساب صحيح',
+                'error-whatsapp': 'يرجى إدخال رقم واتساب صحيح (7 أرقام على الأقل)',
+                'error-whatsapp-duplicate': 'رقم الواتساب هذا مسجل بالفعل. يرجى استخدام رقم آخر.',
                 'error-submit': 'فشل الإرسال. يرجى المحاولة مرة أخرى.',
                 
                 // Hints
-                'whatsapp-hint': 'الصيغة: 5X XXX XXXX (مثال: 50 123 4567)',
+                'whatsapp-hint': 'أدخل رقم هاتفك بدون رمز الدولة',
                 
                 // Buttons
                 'btn-submit': 'احصل على مكافأة الترحيب',
@@ -592,6 +787,8 @@
                 'success-message-1': 'مرحباً بك في هاوس كير. يسعدنا أن تكون من أوائل عملاء فرعنا الجديد.',
                 'success-message-2': 'سيتواصل معك فريقنا قريباً عبر الواتساب.',
                 'whatsapp-badge': 'سنتواصل معك عبر الواتساب',
+                'follow-note': 'يرجى متابعتنا على <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">فيسبوك</a>، <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">إنستجرام</a>، و<a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">سناب شات</a> <strong>@housecareksa</strong> — يجب متابعتنا على هذه الحسابات قبل استلام المكافأة.',
+                'footer-socials': 'تابعنا: <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">فيسبوك</a> · <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">إنستجرام</a> · <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">سناب شات</a>',
                 
                 // Footer
                 'footer-copyright': '© 2024 هاوس كير المملكة العربية السعودية. جميع الحقوق محفوظة.',
@@ -599,7 +796,7 @@
             }
         };
 
-        // Current language state (default to Arabic)
+        // Current language state - Default to Arabic
         let currentLang = localStorage.getItem('housecare_lang') || 'ar';
 
         /**
@@ -664,6 +861,7 @@
 
         // ============================================
         // DOM Elements
+        // ============================================
         const form = document.getElementById('reward-form');
         const formCard = document.getElementById('form-card');
         const successCard = document.getElementById('success-card');
@@ -677,6 +875,7 @@
         // Form field elements
         const fullNameInput = document.getElementById('fullName');
         const emailInput = document.getElementById('email');
+        const countryCodeSelect = document.getElementById('countryCode');
         const whatsappInput = document.getElementById('whatsapp');
 
         // Error elements
@@ -684,9 +883,10 @@
         const emailError = document.getElementById('email-error');
         const emailDuplicateError = document.getElementById('email-duplicate-error');
         const whatsappError = document.getElementById('whatsapp-error');
+        const whatsappDuplicateError = document.getElementById('whatsapp-duplicate-error');
         
         // ============================================
-        // Duplicate Email Checking
+        // Duplicate Checking Functions
         // ============================================
         
         /**
@@ -695,6 +895,14 @@
          */
         function getSubmittedEmails() {
             return JSON.parse(localStorage.getItem('housecare_submitted_emails') || '[]');
+        }
+        
+        /**
+         * Gets the list of submitted WhatsApp numbers from localStorage
+         * @returns {Array} - Array of submitted WhatsApp numbers
+         */
+        function getSubmittedWhatsApps() {
+            return JSON.parse(localStorage.getItem('housecare_submitted_whatsapps') || '[]');
         }
         
         /**
@@ -708,6 +916,18 @@
         }
         
         /**
+         * Adds a WhatsApp number to the submitted list
+         * @param {string} whatsapp - The full WhatsApp number to add (with country code)
+         */
+        function addSubmittedWhatsApp(whatsapp) {
+            const whatsapps = getSubmittedWhatsApps();
+            // Normalize: remove all non-digits
+            const normalized = whatsapp.replace(/\D/g, '');
+            whatsapps.push(normalized);
+            localStorage.setItem('housecare_submitted_whatsapps', JSON.stringify(whatsapps));
+        }
+        
+        /**
          * Checks if an email has already been submitted
          * @param {string} email - The email to check
          * @returns {boolean} - True if duplicate, false otherwise
@@ -715,6 +935,19 @@
         function isEmailDuplicate(email) {
             const emails = getSubmittedEmails();
             return emails.includes(email.toLowerCase().trim());
+        }
+        
+        /**
+         * Checks if a WhatsApp number has already been submitted
+         * @param {string} countryCode - The country code
+         * @param {string} phoneNumber - The phone number
+         * @returns {boolean} - True if duplicate, false otherwise
+         */
+        function isWhatsAppDuplicate(countryCode, phoneNumber) {
+            const whatsapps = getSubmittedWhatsApps();
+            // Normalize: combine and remove all non-digits
+            const fullNumber = (countryCode + phoneNumber).replace(/\D/g, '');
+            return whatsapps.includes(fullNumber);
         }
 
         // ============================================
@@ -780,38 +1013,52 @@
         }
 
         /**
-         * Validates the WhatsApp number (Saudi format)
+         * Validates the WhatsApp number
+         * @param {boolean} checkDuplicate - Whether to check for duplicate numbers
          * @returns {boolean} - True if valid, false otherwise
          */
-        function validateWhatsApp() {
-            const value = whatsappInput.value.trim();
-            // Saudi mobile numbers start with 5 and are 9 digits
-            const saudiPhoneRegex = /^5[0-9]{8}$/;
-            const isValid = saudiPhoneRegex.test(value);
+        function validateWhatsApp(checkDuplicate = false) {
+            const value = whatsappInput.value.trim().replace(/\D/g, '');
+            const countryCode = countryCodeSelect.value;
             
-            if (!isValid) {
+            // Phone number should be at least 7 digits and max 15 digits
+            const isValidFormat = value.length >= 7 && value.length <= 15;
+            
+            // Hide both error messages first
+            whatsappError.classList.add('hidden');
+            whatsappDuplicateError.classList.add('hidden');
+            
+            if (!isValidFormat) {
                 whatsappError.classList.remove('hidden');
                 whatsappInput.classList.add('border-red-300', 'shake');
                 whatsappInput.classList.remove('border-gray-100');
                 setTimeout(() => whatsappInput.classList.remove('shake'), 300);
-            } else {
-                whatsappError.classList.add('hidden');
-                whatsappInput.classList.remove('border-red-300');
-                whatsappInput.classList.add('border-gray-100');
+                return false;
             }
             
-            return isValid;
+            // Check for duplicate WhatsApp if requested
+            if (checkDuplicate && isWhatsAppDuplicate(countryCode, value)) {
+                whatsappDuplicateError.classList.remove('hidden');
+                whatsappInput.classList.add('border-red-300', 'shake');
+                whatsappInput.classList.remove('border-gray-100');
+                setTimeout(() => whatsappInput.classList.remove('shake'), 300);
+                return false;
+            }
+            
+            whatsappInput.classList.remove('border-red-300');
+            whatsappInput.classList.add('border-gray-100');
+            return true;
         }
 
         /**
          * Validates all form fields
-         * @param {boolean} checkDuplicate - Whether to check for duplicate emails
+         * @param {boolean} checkDuplicates - Whether to check for duplicates
          * @returns {boolean} - True if all valid, false otherwise
          */
-        function validateForm(checkDuplicate = false) {
+        function validateForm(checkDuplicates = false) {
             const isFullNameValid = validateFullName();
-            const isEmailValid = validateEmail(checkDuplicate);
-            const isWhatsAppValid = validateWhatsApp();
+            const isEmailValid = validateEmail(checkDuplicates);
+            const isWhatsAppValid = validateWhatsApp(checkDuplicates);
             
             return isFullNameValid && isEmailValid && isWhatsAppValid;
         }
@@ -821,15 +1068,15 @@
         // ============================================
 
         /**
-         * Formats WhatsApp number input (adds spaces for readability)
+         * Formats WhatsApp number input (digits only)
          */
         whatsappInput.addEventListener('input', function(e) {
             // Remove any non-digit characters
             let value = e.target.value.replace(/\D/g, '');
             
-            // Limit to 9 digits
-            if (value.length > 9) {
-                value = value.slice(0, 9);
+            // Limit to 15 digits (max international phone length)
+            if (value.length > 15) {
+                value = value.slice(0, 15);
             }
             
             // Update the input value
@@ -838,8 +1085,8 @@
 
         // Real-time validation on blur
         fullNameInput.addEventListener('blur', validateFullName);
-        emailInput.addEventListener('blur', validateEmail);
-        whatsappInput.addEventListener('blur', validateWhatsApp);
+        emailInput.addEventListener('blur', () => validateEmail(false));
+        whatsappInput.addEventListener('blur', () => validateWhatsApp(false));
 
         // Clear errors on input
         fullNameInput.addEventListener('input', () => {
@@ -857,6 +1104,15 @@
 
         whatsappInput.addEventListener('input', () => {
             whatsappError.classList.add('hidden');
+            whatsappDuplicateError.classList.add('hidden');
+            whatsappInput.classList.remove('border-red-300');
+            whatsappInput.classList.add('border-gray-100');
+        });
+        
+        // Also clear WhatsApp errors when country code changes
+        countryCodeSelect.addEventListener('change', () => {
+            whatsappError.classList.add('hidden');
+            whatsappDuplicateError.classList.add('hidden');
             whatsappInput.classList.remove('border-red-300');
             whatsappInput.classList.add('border-gray-100');
         });
@@ -875,7 +1131,7 @@
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Validate all fields (including duplicate email check)
+            // Validate all fields (including duplicate checks)
             if (!validateForm(true)) {
                 return;
             }
@@ -887,13 +1143,17 @@
             btnSpinner.classList.remove('hidden');
             submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
             
-            // Prepare form data - remove any spaces/non-digits from WhatsApp number
-            const whatsappNumber = whatsappInput.value.replace(/\D/g, '').replace(/\s/g, '');
+            // Get country code and phone number
+            const countryCode = countryCodeSelect.value;
+            const phoneNumber = whatsappInput.value.replace(/\D/g, '');
+            const fullWhatsApp = countryCode + phoneNumber;
+            
+            // Prepare form data
             const formData = {
                 fullName: fullNameInput.value.trim(),
                 email: emailInput.value.trim(),
                 nationality: document.getElementById('nationality').value,
-                whatsapp: '+966' + whatsappNumber,
+                whatsapp: fullWhatsApp,
                 language: currentLang,
                 submittedAt: new Date().toISOString()
             };
@@ -919,8 +1179,9 @@
                 
                 console.log('✅ Data sent to Google Sheets successfully!');
                 
-                // Save email to prevent duplicates
+                // Save email and WhatsApp to prevent duplicates
                 addSubmittedEmail(formData.email);
+                addSubmittedWhatsApp(formData.whatsapp);
                 
                 showSuccess();
                 
@@ -928,11 +1189,11 @@
                 console.error('❌ Error submitting to Google Sheets:', error);
                 
                 // Still show success since data is saved locally
-                // You can modify this to show an error message if preferred
-                showSuccess();
+                // Save email and WhatsApp to prevent duplicates
+                addSubmittedEmail(formData.email);
+                addSubmittedWhatsApp(formData.whatsapp);
                 
-                // Optional: Show error notification
-                // showError(translations[currentLang]['error-submit'] || 'Submission failed. Please try again.');
+                showSuccess();
             }
         });
 
@@ -995,6 +1256,9 @@
         restartBtn.addEventListener('click', function() {
             // Reset form
             form.reset();
+            
+            // Reset country code to default (Saudi Arabia)
+            countryCodeSelect.value = '+966';
             
             // Hide success card
             successCard.classList.add('hidden');
