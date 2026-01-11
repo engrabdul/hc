@@ -16,8 +16,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
-        * {
+        /* Apply the primary typeface to common text elements (avoid overriding icon fonts) */
+        body, input, select, textarea, button, label, p, span, h1, h2, h3, h4, h5, h6, a, li, div {
             font-family: 'Poppins', sans-serif;
+        }
+
+        /* Ensure Font Awesome icon fonts are preserved and not overridden by global font rules */
+        .fa, .fas, .far, .fal, .fab, [class^="fa-"] {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+            font-style: normal;
+            speak: none;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Brand color variables (derived from hclogo.jpg color combination) */
@@ -41,8 +52,8 @@
             color: var(--brand-2);
         }
 
-        /* Arabic font for RTL */
-        html[dir="rtl"] * {
+        /* Arabic font for RTL (exclude icon elements so Font Awesome keeps its font-family) */
+        html[dir="rtl"] :not(.fa):not(.fas):not(.far):not(.fal):not(.fab):not([class^="fa-"]) {
             font-family: 'Noto Kufi Arabic', 'Poppins', sans-serif;
         }
 
@@ -243,6 +254,58 @@
             .country-code-select {
                 width: 100%;
             }
+        }
+
+        /* Mobile responsiveness tweaks */
+        @media (max-width: 640px) {
+            header .max-w-4xl {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            header .text-2xl {
+                font-size: 1.125rem;
+            }
+
+            .hero-gradient {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .hero-gradient h1 {
+                font-size: 1.5rem !important;
+            }
+
+            #form-card {
+                padding: 1.25rem !important;
+                border-radius: 1rem;
+            }
+
+            .inline-icon {
+                width: 0.95rem;
+                height: 0.95rem;
+                margin-inline-start: 0.4rem;
+            }
+
+            .phone-input-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Positioning fix for custom dropdown chevron that respects RTL */
+        .relative .fa-chevron-down {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 1.25rem;
+            pointer-events: none;
+            color: #9CA3AF;
+        }
+
+        html[dir="rtl"] .relative .fa-chevron-down {
+            left: 1.25rem;
+            right: auto;
         }
     </style>
 </head>
