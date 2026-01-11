@@ -295,19 +295,19 @@
                 padding-inline-end: 4rem;
             }
 
-            /* Position language toggle at top-right for small screens */
+            /* Position language toggle at top-right (LTR) or top-left (RTL) for small screens */
             #lang-toggle {
                 position: absolute;
                 top: 0.75rem;
-                right: 1rem;
+                right: 1rem; /* default for LTR */
                 z-index: 50;
                 transform: none;
             }
 
-            /* Ensure consistent placement in RTL (right remains visual right) */
+            /* In RTL switch placement to left */
             html[dir="rtl"] #lang-toggle {
-                right: 1rem;
-                left: auto;
+                left: 1rem;
+                right: auto;
             }
 
             header .text-2xl {
@@ -382,6 +382,9 @@
             right: auto;
         }
 
+        /* Center the hero scroll indicator */
+        #scroll-indicator { display: flex; justify-content: center; }
+
         /* Button/arrow and spinner tweaks */
         #btn-icon, .btn-icon {
             display: inline-block;
@@ -415,7 +418,7 @@
                 <div class="flex items-center gap-3">
                     <!-- HouseCare Logo Icon -->
                     <img src="hclogo.jpg" alt="HouseCare logo" class="w-10 h-10 object-contain">
-                    <span class="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">HouseCare</span>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent" data-translate="brand-name">HouseCare</span>
                     <span class="text-sm text-gray-500 font-medium hidden sm:block" data-translate="brand-location">Saudi Arabia</span>
                 </div>
                 
@@ -434,9 +437,9 @@
         <!-- Hero Section -->
         <section class="hero-gradient relative px-6 py-16 sm:py-24 overflow-hidden">
             <!-- Decorative Pattern Overlay -->
-            <div class="absolute inset-0 opacity-10 pointer-events-none" 
-                 style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 40px 40px;">
-            </div>
+             <div class="absolute inset-0 opacity-10 pointer-events-none" 
+              style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 40px 40px;">
+          </div>
             
             <div class="max-w-4xl mx-auto text-center relative z-10">
                 <!-- Decorative Icon -->
@@ -453,8 +456,8 @@
                 </p>
 
                 <!-- Scroll indicator -->
-                <div class="mt-8 animate-bounce">
-                    <i class="fa-solid fa-chevron-down text-white/70 text-2xl mx-auto" aria-hidden="true"></i>
+                <div class="mt-8 animate-bounce" id="scroll-indicator">
+                    <i class="fa-solid fa-chevron-down text-white/70 text-2xl" aria-hidden="true"></i>
                 </div>
             </div>
         </section>
@@ -828,7 +831,7 @@
             <div class="max-w-4xl mx-auto text-center">
                 <div class="flex items-center justify-center gap-2 mb-3">
                     <img src="hclogo.jpg" alt="HouseCare logo" class="w-6 h-6 object-contain">
-                    <span class="font-semibold text-gray-700">HouseCare</span>
+                    <span class="font-semibold text-gray-700" data-translate="brand-name">HouseCare</span>
                 </div>
                 <p class="text-sm text-gray-500" data-translate="footer-copyright">© 2024 HouseCare Saudi Arabia. All rights reserved.</p>
                 <p class="text-xs text-gray-400 mt-2" data-translate="footer-visit">Visit us at <a href="https://housecare.sa" target="_blank" class="text-teal-600 hover:underline">housecare.sa</a></p>
@@ -924,6 +927,7 @@
                 'success-message-1': 'Welcome to HouseCare. We are delighted to have you as one of the first customers of our new branch.',
                 'success-message-2': 'Our team will contact you shortly on WhatsApp.',
                 'whatsapp-badge': "We'll contact you on WhatsApp",
+                'brand-name': 'HouseCare',
                 'label-follow-snap': `I confirm I follow HouseCare on
                     <a href="https://instagram.com/housecareksa" target="_blank" class="inline-icon" aria-label="Instagram - housecareksa">
                         <i class="fab fa-instagram inline-icon" aria-hidden="true"></i>
@@ -1006,6 +1010,7 @@
                 'success-message-1': 'مرحباً بك في هاوس كير. يسعدنا أن تكون من أوائل عملاء فرعنا الجديد.',
                 'success-message-2': 'سيتواصل معك فريقنا قريباً عبر الواتساب.',
                 'whatsapp-badge': 'سنتواصل معك عبر الواتساب',
+                'brand-name': 'هاوس كير',
                 'label-follow-snap': `أؤكد أنني أتابع هاوس كير على
                     <a href="https://instagram.com/housecareksa" target="_blank" class="inline-icon" aria-label="Instagram - housecareksa">
                         <i class="fab fa-instagram inline-icon" aria-hidden="true"></i>
