@@ -12,10 +12,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
         * {
             font-family: 'Poppins', sans-serif;
+        }
+
+        /* Brand color variables (derived from hclogo.jpg color combination) */
+        :root {
+            --brand-1: #0d9488; /* deep teal */
+            --brand-2: #0891b2; /* cyan */
+            --brand-3: #0284c7; /* sky */
+            --brand-accent: #0f766e; /* darker teal */
+            --brand-muted: #6b7280; /* muted gray */
+            --brand-bg-accent: rgba(8,145,178,0.06);
+            --brand-shadow: rgba(8,145,178,0.28);
+        }
+
+        /* Inline social icon helper — margin respects RTL via logical property */
+        .inline-icon {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            vertical-align: middle;
+            margin-inline-start: 0.5rem;
+            color: var(--brand-2);
         }
 
         /* Arabic font for RTL */
@@ -36,9 +59,9 @@
             transform: scale(0.95);
         }
 
-        /* Custom gradient background */
+        /* Custom gradient background (uses logo palette) */
         .hero-gradient {
-            background: linear-gradient(-45deg, #0d9488, #0891b2, #0284c7, #0f766e);
+            background: linear-gradient(-45deg, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-accent));
             background-size: 400% 400%;
             animation: gradient-flow 15s ease infinite;
         }
@@ -131,6 +154,13 @@
             z-index: 100;
         }
 
+        /* Override some Tailwind utility color classes to match brand palette */
+        .text-teal-600 { color: var(--brand-2) !important; }
+        .bg-teal-50 { background-color: var(--brand-bg-accent) !important; }
+        .text-green-500 { color: var(--brand-2) !important; }
+        .text-green-700 { color: var(--brand-3) !important; }
+        .shadow-teal-500\/30 { box-shadow: 0 10px 40px -10px var(--brand-shadow) !important; }
+
         /* Checkmark animation */
         @keyframes checkmark {
             0% {
@@ -143,6 +173,8 @@
 
         .checkmark-circle {
             animation: scaleIn 0.4s ease-out forwards;
+            /* use brand gradient instead of Tailwind utility classes */
+            background: linear-gradient(135deg, var(--brand-2), var(--brand-3)) !important;
         }
 
         .checkmark-check {
@@ -237,9 +269,7 @@
                     class="lang-toggle flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 shadow-sm"
                     aria-label="Switch language"
                 >
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
-                    </svg>
+                    <i class="fa-solid fa-language text-lg" aria-hidden="true"></i>
                     <span id="lang-label">English</span>
                 </button>
             </div>
@@ -268,9 +298,7 @@
 
                 <!-- Scroll indicator -->
                 <div class="mt-8 animate-bounce">
-                    <svg class="w-6 h-6 mx-auto text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                    </svg>
+                    <i class="fa-solid fa-chevron-down text-white/70 text-2xl mx-auto" aria-hidden="true"></i>
                 </div>
             </div>
         </section>
@@ -354,9 +382,7 @@
                                     <option value="Other" data-translate-option="nationality-other">Other</option>
                                 </select>
                                 <!-- Custom dropdown arrow -->
-                                <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none rtl:right-auto rtl:left-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
+                                    <i class="fa-solid fa-chevron-down text-gray-400 pointer-events-none text-base absolute right-5 top-1/2 -translate-y-1/2 rtl:right-auto rtl:left-5" aria-hidden="true"></i>
                             </div>
                         </div>
 
@@ -514,9 +540,7 @@
                                         <option value="+675">🇵🇬 +675</option>
                                     </select>
                                     <!-- Custom dropdown arrow -->
-                                    <svg class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none rtl:right-auto rtl:left-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
+                                    <i class="fa-solid fa-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none rtl:right-auto rtl:left-2 text-sm" aria-hidden="true"></i>
                                 </div>
                                 
                                 <!-- Phone Number Input -->
@@ -544,7 +568,12 @@
                                 <input id="followSnapCheckbox" type="checkbox" class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded" />
                             </div>
                             <div class="flex-1 text-sm text-gray-600">
-                                <label for="followSnapCheckbox" class="block" data-translate="label-follow-snap">I confirm I follow <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">@housecareksa</a> on Snapchat.</label>
+                                <label for="followSnapCheckbox" class="block" data-translate="label-follow-snap">
+                                    I confirm I follow 
+                                    <a href="https://www.snapchat.com/add/HouseCareOfficial" target="_blank" rel="noopener noreferrer" class="text-teal-600 font-medium underline hover:text-teal-800">
+                                        @HouseCareOfficial
+                                    </a> on Snapchat.
+                                </label>
                                 <p id="followSnap-error" class="mt-1 text-sm text-red-500 hidden" data-translate="error-follow-snap">You must follow us on Snapchat to receive your reward.</p>
                             </div>
                         </div>
@@ -555,14 +584,9 @@
                             class="w-full py-4 px-6 hero-gradient text-white font-semibold rounded-2xl shadow-lg shadow-teal-500/30 btn-hover smooth-transition flex items-center justify-center gap-2 mt-6"
                         >
                             <span id="btn-text" data-translate="btn-submit">Claim My Welcome Reward</span>
-                            <svg id="btn-icon" class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
+                            <i id="btn-icon" class="fa-solid fa-arrow-right text-base rtl:rotate-180" aria-hidden="true"></i>
                             <!-- Loading Spinner (hidden by default) -->
-                            <svg id="btn-spinner" class="w-5 h-5 spinner hidden" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
+                            <i id="btn-spinner" class="fa-solid fa-spinner spinner hidden" aria-hidden="true"></i>
                         </button>
 
                         <!-- Privacy note -->
@@ -573,9 +597,7 @@
                         <!-- Error notification (hidden by default) -->
                         <div id="error-notification" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-xl">
                             <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
+                                <i class="fa-solid fa-circle-exclamation w-5 h-5 text-red-500 flex-shrink-0" aria-hidden="true"></i>
                                 <p id="error-message" class="text-sm text-red-700"></p>
                             </div>
                         </div>
@@ -588,10 +610,8 @@
                     <!-- Animated Checkmark -->
                     <div class="flex justify-center mb-6">
                         <div class="relative">
-                            <div class="checkmark-circle w-24 h-24 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center shadow-lg shadow-teal-500/30">
-                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path class="checkmark-check" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                                </svg>
+                            <div class="checkmark-circle w-24 h-24 rounded-full flex items-center justify-center shadow-lg shadow-teal-500/30">
+                                <i class="fa-solid fa-check text-white text-3xl" aria-hidden="true"></i>
                             </div>
                             <!-- Decorative rings -->
                             <div class="absolute -inset-3 border-2 border-teal-200 rounded-full scale-in" style="animation-delay: 0.2s;"></div>
@@ -611,9 +631,7 @@
 
                     <!-- WhatsApp info badge -->
                     <div class="mt-8 inline-flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full float-up-delay-2">
-                        <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
+                        <i class="fa-brands fa-whatsapp w-5 h-5 text-green-500" aria-hidden="true"></i>
                         <span class="text-sm text-green-700 font-medium" data-translate="whatsapp-badge">We'll contact you on WhatsApp</span>
                     </div>
 
@@ -621,20 +639,16 @@
                     <div class="mt-4 text-sm text-gray-700">
                         <div class="flex items-center justify-center gap-4">
                             <a href="https://facebook.com/housecareksa" target="_blank" aria-label="Facebook - housecareksa" class="text-teal-600 hover:text-teal-700">
-                                <!-- Facebook SVG -->
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.09 5.66 21.19 10.44 21.95v-7.04H7.9v-2.84h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.88h2.74l-.44 2.84h-2.3V21.95C18.34 21.19 22 17.09 22 12.07z"/></svg>
+                                <i class="fa-brands fa-facebook-f inline-icon" aria-hidden="true"></i>
                             </a>
                             <a href="https://instagram.com/housecareksa" target="_blank" aria-label="Instagram - housecareksa" class="text-teal-600 hover:text-teal-700">
-                                <!-- Instagram SVG -->
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A4.8 4.8 0 1016.8 13 4.8 4.8 0 0012 8.2zm6.4-2.3a1.2 1.2 0 11-1.2-1.2 1.2 1.2 0 011.2 1.2zM12 10.5A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5z"/></svg>
+                                <i class="fa-brands fa-instagram inline-icon" aria-hidden="true"></i>
                             </a>
                             <a href="https://www.snapchat.com/add/housecareksa" target="_blank" aria-label="Snapchat - housecareksa" class="text-teal-600 hover:text-teal-700">
-                                <!-- Snapchat SVG -->
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.32 6.6c-.2-.5-.94-.9-1.96-.9s-1.77.4-1.96.9c-.2.5-.2 1.26.01 1.85.22.6.66 1.36 1.45 1.77.79.4 1.2.44 1.2.44s.41-.04 1.2-.44c.79-.41 1.23-1.17 1.45-1.77.21-.59.21-1.35.01-1.85zM12 2C8.1 2 5.07 5.03 5.07 8.93c0 2.09.87 3.98 2.28 5.32.7.67 1.5 1.07 2.24 1.29.72.21 1.22.72 1.46 1.26.25.55.34 1.2.34 2.21h2.8c0-1 .09-1.66.34-2.21.24-.54.74-1.05 1.46-1.26.74-.22 1.54-.62 2.24-1.29 1.41-1.34 2.28-3.23 2.28-5.32C18.93 5.03 15.9 2 12 2z"/></svg>
+                                <i class="fa-brands fa-snapchat inline-icon" aria-hidden="true"></i>
                             </a>
                             <a href="https://www.tiktok.com/@housecareksa" target="_blank" aria-label="TikTok - housecareksa" class="text-teal-600 hover:text-teal-700">
-                                <!-- TikTok SVG -->
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3h2a3 3 0 01-3 3v7a4 4 0 11-4-4V6a6 6 0 004-3z"/></svg>
+                                <i class="fa-brands fa-tiktok inline-icon" aria-hidden="true"></i>
                             </a>
                         </div>
                         <p class="mt-2 text-center" ><span data-translate="follow-note-text">Please follow @housecareksa — you must follow these accounts before you can receive your reward.</span></p>
@@ -662,20 +676,20 @@
                 </div>
                 <p class="text-sm text-gray-500" data-translate="footer-copyright">© 2024 HouseCare Saudi Arabia. All rights reserved.</p>
                 <p class="text-xs text-gray-400 mt-2" data-translate="footer-visit">Visit us at <a href="https://housecare.sa" target="_blank" class="text-teal-600 hover:underline">housecare.sa</a></p>
-                <div class="mt-2 flex items-center justify-center gap-3">
-                    <a href="https://facebook.com/housecareksa" target="_blank" aria-label="Facebook - housecareksa" class="text-gray-600 hover:text-teal-700">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.09 5.66 21.19 10.44 21.95v-7.04H7.9v-2.84h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.88h2.74l-.44 2.84h-2.3V21.95C18.34 21.19 22 17.09 22 12.07z"/></svg>
-                    </a>
-                    <a href="https://instagram.com/housecareksa" target="_blank" aria-label="Instagram - housecareksa" class="text-gray-600 hover:text-teal-700">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A4.8 4.8 0 1016.8 13 4.8 4.8 0 0012 8.2zm6.4-2.3a1.2 1.2 0 11-1.2-1.2 1.2 1.2 0 011.2 1.2zM12 10.5A1.5 1.5 0 1013.5 12 1.5 1.5 0 0012 10.5z"/></svg>
-                    </a>
-                    <a href="https://www.snapchat.com/add/housecareksa" target="_blank" aria-label="Snapchat - housecareksa" class="text-gray-600 hover:text-teal-700">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.32 6.6c-.2-.5-.94-.9-1.96-.9s-1.77.4-1.96.9c-.2.5-.2 1.26.01 1.85.22.6.66 1.36 1.45 1.77.79.4 1.2.44 1.2.44s.41-.04 1.2-.44c.79-.41 1.23-1.17 1.45-1.77.21-.59.21-1.35.01-1.85zM12 2C8.1 2 5.07 5.03 5.07 8.93c0 2.09.87 3.98 2.28 5.32.7.67 1.5 1.07 2.24 1.29.72.21 1.22.72 1.46 1.26.25.55.34 1.2.34 2.21h2.8c0-1 .09-1.66.34-2.21.24-.54.74-1.05 1.46-1.26.74-.22 1.54-.62 2.24-1.29 1.41-1.34 2.28-3.23 2.28-5.32C18.93 5.03 15.9 2 12 2z"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@housecareksa" target="_blank" aria-label="TikTok - housecareksa" class="text-gray-600 hover:text-teal-700">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3h2a3 3 0 01-3 3v7a4 4 0 11-4-4V6a6 6 0 004-3z"/></svg>
-                    </a>
-                </div>
+                        <div class="mt-2 flex items-center justify-center gap-3">
+                            <a href="https://facebook.com/housecareksa" target="_blank" aria-label="Facebook - housecareksa" class="text-gray-600 hover:text-teal-700">
+                                <i class="fa-brands fa-facebook-f inline-icon" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://instagram.com/housecareksa" target="_blank" aria-label="Instagram - housecareksa" class="text-gray-600 hover:text-teal-700">
+                                <i class="fa-brands fa-instagram inline-icon" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.snapchat.com/add/housecareksa" target="_blank" aria-label="Snapchat - housecareksa" class="text-gray-600 hover:text-teal-700">
+                                <i class="fa-brands fa-snapchat inline-icon" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@housecareksa" target="_blank" aria-label="TikTok - housecareksa" class="text-gray-600 hover:text-teal-700">
+                                <i class="fa-brands fa-tiktok inline-icon" aria-hidden="true"></i>
+                            </a>
+                        </div>
             </div>
         </footer>
     </div>
@@ -754,7 +768,16 @@
                 'success-message-1': 'Welcome to HouseCare. We are delighted to have you as one of the first customers of our new branch.',
                 'success-message-2': 'Our team will contact you shortly on WhatsApp.',
                 'whatsapp-badge': "We'll contact you on WhatsApp",
-                'label-follow-snap': 'I confirm I follow <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">@housecareksa</a> on Snapchat.',
+                'label-follow-snap': `I confirm I follow HouseCare on
+                    <a href="https://instagram.com/housecareksa" target="_blank" class="inline-icon" aria-label="Instagram - housecareksa">
+                        <i class="fab fa-instagram inline-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="inline-icon" aria-label="Snapchat - housecareksa">
+                        <i class="fab fa-snapchat inline-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@housecareksa" target="_blank" class="inline-icon" aria-label="TikTok - housecareksa">
+                        <i class="fab fa-tiktok inline-icon" aria-hidden="true"></i>
+                    </a>`,
                 'error-follow-snap': 'You must follow us on Snapchat to receive your reward.',
                 'follow-note': 'Please follow us on <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a>, <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a>, and <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a> <strong>@housecareksa</strong> — you must follow these accounts before you can receive your reward.',
                 'footer-socials': 'Follow us: <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Facebook</a> · <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">Instagram</a> · <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">Snapchat</a>',
@@ -827,7 +850,16 @@
                 'success-message-1': 'مرحباً بك في هاوس كير. يسعدنا أن تكون من أوائل عملاء فرعنا الجديد.',
                 'success-message-2': 'سيتواصل معك فريقنا قريباً عبر الواتساب.',
                 'whatsapp-badge': 'سنتواصل معك عبر الواتساب',
-                'label-follow-snap': 'أؤكد أنني أتابع <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">@housecareksa</a> على سناب شات.',
+                'label-follow-snap': `أؤكد أنني أتابع هاوس كير على
+                    <a href="https://instagram.com/housecareksa" target="_blank" class="inline-icon" aria-label="Instagram - housecareksa">
+                        <i class="fab fa-instagram inline-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="inline-icon" aria-label="Snapchat - housecareksa">
+                        <i class="fab fa-snapchat inline-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@housecareksa" target="_blank" class="inline-icon" aria-label="TikTok - housecareksa">
+                        <i class="fab fa-tiktok inline-icon" aria-hidden="true"></i>
+                    </a>`,
                 'error-follow-snap': 'يجب متابعتنا على سناب شات لاستلام المكافأة.',
                 'follow-note': 'يرجى متابعتنا على <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">فيسبوك</a>، <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">إنستجرام</a>، و<a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">سناب شات</a> <strong>@housecareksa</strong> — يجب متابعتنا على هذه الحسابات قبل استلام المكافأة.',
                 'footer-socials': 'تابعنا: <a href="https://facebook.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">فيسبوك</a> · <a href="https://instagram.com/housecareksa" target="_blank" class="text-teal-600 hover:underline">إنستجرام</a> · <a href="https://www.snapchat.com/add/housecareksa" target="_blank" class="text-teal-600 hover:underline">سناب شات</a>',
