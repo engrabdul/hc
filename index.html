@@ -285,8 +285,9 @@
         /* Mobile responsiveness tweaks */
         @media (max-width: 640px) {
             header .max-w-4xl {
+                display: flex;
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
                 gap: 0.5rem;
             }
 
@@ -303,10 +304,26 @@
                 font-size: 1.5rem !important;
             }
 
+            .hero-gradient p {
+                font-size: 0.95rem !important;
+            }
+
             #form-card {
                 padding: 1.25rem !important;
                 border-radius: 1rem;
             }
+
+            /* Make submit and primary controls easier to tap on small screens */
+            #submit-btn {
+                padding-top: 0.9rem !important;
+                padding-bottom: 0.9rem !important;
+                gap: 0.5rem !important;
+            }
+
+            /* Hide long language label to save space */
+            #lang-label { display: none; }
+
+            .lang-toggle { padding-left: 0.5rem; padding-right: 0.5rem; }
 
             .inline-icon {
                 width: 0.95rem;
@@ -318,6 +335,17 @@
             .phone-input-group {
                 flex-direction: column;
             }
+            .country-code-select { width: 100%; }
+        }
+
+        /* Very small screens adjustments */
+        @media (max-width: 380px) {
+            .hero-gradient h1 { font-size: 1.25rem !important; }
+            .hero-gradient p { font-size: 0.9rem !important; }
+            #form-card { padding: 1rem !important; }
+            .inline-icon { margin-inline-start: 0.3rem; font-size: 0.85rem; }
+            #btn-text { font-size: 0.95rem; }
+            #btn-icon, #btn-spinner { font-size: 0.95rem; }
         }
 
         /* Positioning fix for custom dropdown chevron that respects RTL */
