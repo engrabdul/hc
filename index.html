@@ -22,11 +22,35 @@
         }
 
         /* Ensure Font Awesome icon fonts are preserved and not overridden by global font rules */
-        .fa, .fas, .far, .fal, .fab, [class^="fa-"] {
-            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+        /* Solid icons use Font Awesome 6 Free with heavy weight */
+        .fa-solid, .fas {
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 900 !important;
             font-style: normal;
-            speak: none;
-            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Regular/Light icons (if used) */
+        .fa-regular, .far, .fal {
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 400 !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Brand icons use a separate family */
+        .fa-brands, .fab {
+            font-family: "Font Awesome 6 Brands" !important;
+            font-weight: 400 !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Fallback catch-all for other fa-* class names */
+        [class^="fa-"] {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -50,6 +74,8 @@
             vertical-align: middle;
             margin-inline-start: 0.5rem;
             color: var(--brand-2);
+            line-height: 1;
+            font-size: 0.95rem;
         }
 
         /* Arabic font for RTL (exclude icon elements so Font Awesome keeps its font-family) */
@@ -286,6 +312,7 @@
                 width: 0.95rem;
                 height: 0.95rem;
                 margin-inline-start: 0.4rem;
+                font-size: 0.9rem;
             }
 
             .phone-input-group {
@@ -306,6 +333,25 @@
         html[dir="rtl"] .relative .fa-chevron-down {
             left: 1.25rem;
             right: auto;
+        }
+
+        /* Button/arrow and spinner tweaks */
+        #btn-icon, .btn-icon {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1rem;
+            transition: transform 0.15s ease;
+        }
+
+        /* Rotate arrow on RTL for icons that expected Tailwind's rtl:rotate-180 utility */
+        .rtl\:rotate-180 { transform: none; }
+        html[dir="rtl"] .rtl\:rotate-180, html[dir="rtl"] #btn-icon { transform: rotate(180deg); }
+
+        /* Spinner sizing */
+        .spinner {
+            font-size: 1rem;
+            display: inline-block;
+            vertical-align: middle;
         }
     </style>
 </head>
