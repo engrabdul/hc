@@ -284,11 +284,30 @@
 
         /* Mobile responsiveness tweaks */
         @media (max-width: 640px) {
+            /* Keep header row layout but reserve space for the language toggle */
+            header { position: relative; }
             header .max-w-4xl {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
                 gap: 0.5rem;
+                /* Reserve inline end space so the toggle doesn't overlap content */
+                padding-inline-end: 4rem;
+            }
+
+            /* Position language toggle at top-right for small screens */
+            #lang-toggle {
+                position: absolute;
+                top: 0.75rem;
+                right: 1rem;
+                z-index: 50;
+                transform: none;
+            }
+
+            /* Ensure consistent placement in RTL (right remains visual right) */
+            html[dir="rtl"] #lang-toggle {
+                right: 1rem;
+                left: auto;
             }
 
             header .text-2xl {
