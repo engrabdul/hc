@@ -824,8 +824,33 @@
                 </div>
 
             </div>
-        </main>
+            <!-- QR Code Section -->
+            <div class="mt-12 text-center">
+                <p class="text-sm text-gray-500 mb-4" data-translate="qr-label">Scan to share this page</p>
+                <div class="inline-block p-4 bg-white rounded-2xl shadow-md">
+                <img id="qr-code" src="" alt="QR Code" class="w-40 h-40">
+                </div>
+            </div>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+            <script>
+                // Generate QR code for current page
+                document.addEventListener('DOMContentLoaded', function() {
+                const qrContainer = document.getElementById('qr-code').parentElement;
+                qrContainer.innerHTML = ''; // Clear placeholder
+                
+                new QRCode(qrContainer, {
+                    text: window.location.href,
+                    width: 160,
+                    height: 160,
+                    colorDark: '#0d9488',
+                    colorLight: '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                });
+            </script>
+        </main>
+        
         <!-- Footer -->
         <footer class="py-6 px-6 bg-gray-100 border-t border-gray-200">
             <div class="max-w-4xl mx-auto text-center">
